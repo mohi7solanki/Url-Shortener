@@ -3,7 +3,6 @@ from . import views
 
 
 urlpatterns = [
-	url(r'^$', views.home, name='home'),
-	url(r'^success/$', views.success, name='success'),
+	url(r'^$', views.HomeView.as_view(), name='home'),
 	url(r'^(?P<short_url>[\w-]{3,15})/$', views.url_redirect_view, name='redirect'),
 ]
