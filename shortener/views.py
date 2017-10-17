@@ -10,9 +10,8 @@ def home(request):
 		form = SubmitUrlForm(request.POST)
 		if form.is_valid():
 			print('valid')
-			pass
-		else:
-			print('not valid')
+			form.save()
+			return HttpResponseRedirect('/')
 	else:
 		form = SubmitUrlForm()
 	return render(request, 'shortener/home.html', {'form': form})

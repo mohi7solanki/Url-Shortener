@@ -17,6 +17,7 @@ class SubmitUrlForm(forms.ModelForm):
 			'short_url',
 		]
 
+	
 	def clean_url(self):
 		url = self.cleaned_data['url']
 		url_validate = URLValidator()
@@ -25,3 +26,4 @@ class SubmitUrlForm(forms.ModelForm):
 		except:
 			raise forms.ValidationError("Please Enter a Valid URL")
 		return url
+
