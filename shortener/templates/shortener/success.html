@@ -1,2 +1,49 @@
-{{obj.url}}
-<a href="{{ obj.get_full_url }}">{{ obj.get_full_url }}</a>
+{% extends 'shortener/layout.html' %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6 mx-auto">
+		<div class="input-group">
+		  <input type="text" id="foo" class="form-control" value="{{url}}" readonly>
+		  <span class="input-group-btn">
+		    <button id="copy-button" class="btn btn-primary" data-clipboard-text="{{ url }}" type="button" data-toggle="tooltip" data-placement="bottom" title="Copied!">Copy</button>
+		  </span>
+		</div>
+	<div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+	var clipboard = new Clipboard('#copy-button');
+	$('#copy-button').tooltip({
+	  trigger: 'click',
+	  placement: 'bottom'
+	});
+
+	function hideTooltip(btn) {
+	  setTimeout(function() {
+	    $(btn).tooltip('hide');
+	  }, 1000);
+	}
+
+	function setTooltip(btn, message) {
+	  $(btn).tooltip('hide')
+	    .attr('data-original-title', message)
+	    .tooltip('show');
+	}
+
+	clipboard.on('success', function(e) {
+	  setTooltip(e.trigger, 'Copied!');
+	  hideTooltip(e.trigger);
+	});
+
+	clipboard.on('error', function(e) {
+	  setTooltip(e.trigger, 'Failed!');
+	  hideTooltip(e.trigger);
+	});
+
+</script>
+{% endblock %}
