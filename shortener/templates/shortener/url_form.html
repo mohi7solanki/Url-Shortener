@@ -13,9 +13,8 @@
     <label>Customize your short link (optional):</label>
     <div class="input-group">
     	<span class="input-group-addon">www.slimtrim.co/</span>
-    	{% render_field form.short_url class='form-control' %}
-    	<div class="invalid-feedback invalid_short_url custom">
-		</div>
+    	{% render_field form.short_url class="form-control" %}
+        <div class="invalid-feedback invalid_short_url custom"></div>
     </div>
 	</div>
 <button type="submit" class="btn btn-primary">Shorten</button>
