@@ -29,7 +29,7 @@
 
 {% block content %}
 <div class="row form">
-	<div class="col-sm-6 mx-auto">
+	<div class="col-lg-6 col-md-8 mx-auto">
 		<form method="POST" class="my-ajax-form" data-url='{{ request.build_absolute_uri|safe }}' action="." novalidate>
 		{% include 'shortener/url_form.html' %}
 	    </form>

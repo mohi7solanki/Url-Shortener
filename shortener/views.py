@@ -37,7 +37,6 @@ class HomeView(FormView):
 		if self.request.is_ajax():
 		    form.save()
 		    full_url = Shortener.objects.latest('created_at').get_full_url()
-		    # full_url = 'justcheking.com'
 		    data = {
 		        'message': full_url
 		    }
@@ -54,8 +53,5 @@ def url_redirect_view(request, short_url=None):
 	return HttpResponseRedirect(url)
 
 
-def success(request):
-	full_url = Shortener.objects.latest('created_at').get_full_url()
-	return render(request, 'shortener/success.html', {'url' :full_url})
 
 

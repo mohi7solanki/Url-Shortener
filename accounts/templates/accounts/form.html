@@ -1,0 +1,22 @@
+{% extends 'shortener/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<style type="text/css">
+	.asteriskField {
+		display: none;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-4 col-md-6 mx-auto">
+		<form method="POST" action="">
+			{% csrf_token %}
+			{{ form | crispy }}
+			<input type="submit" class="btn btn-primary" value="Register">
+		</form>
+	</div>
+</div>
+{% endblock %}
