@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import UserForm, UserLoginForm
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -55,4 +56,6 @@ class UserRegistrationView(FormView):
 
 def logoutView(request):
 	logout(request)
+	template_name = 'shortener/home.html'
+	messages.success(request, 'Logged Out successfully!')
 	return HttpResponseRedirect('/')

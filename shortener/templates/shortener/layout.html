@@ -60,6 +60,7 @@
     </nav>
 	
 	<div class="container">
+		{% include 'shortener/messages.html' %}
 		{% block content %}
 		{% endblock %}
 	</div>
@@ -73,6 +74,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
+	<script type="text/javascript">
+		$(".alert").alert()
+	</script>
 
 	{% block script %}
 	{% endblock %}
