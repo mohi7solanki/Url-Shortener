@@ -5,13 +5,28 @@ body {
     background-repeat: no-repeat;
     background-position: center; 
     background-attachment: fixed;
+    padding-top: 80px; 
     height: 100%;
 }
 
 html, body {
   height:100%;
 }
+
 body {
   display:flex;
   align-items:center;
+}
+
+.navbar {
+  font-family: 'Raleway', sans-serif;
+  font-size: 120% !important;
+}
+
+
+@media (max-width: 991px) {
+  .navbar
+    {
+        background-color: grey!important;
+    }
 }

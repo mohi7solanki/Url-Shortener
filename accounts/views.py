@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import UserForm, UserLoginForm
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 class UserLoginView(FormView):
@@ -51,3 +51,8 @@ class UserRegistrationView(FormView):
 	    context = super().get_context_data(**kwargs)
 	    context['heading'] = 'Register'
 	    return context
+
+
+def logoutView(request):
+	logout(request)
+	return HttpResponseRedirect('/')

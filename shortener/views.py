@@ -32,6 +32,14 @@ class HomeView(FormView):
 		else:
 		    return response
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		username = None
+		if self.request.user.is_authenticated():
+			username = self.request.user.username
+		context['username'] = username
+		return context
+
 
 	def form_valid(self, form):
 		response = super().form_valid(form)
@@ -44,6 +52,14 @@ class HomeView(FormView):
 		    return JsonResponse(data)
 		else:
 		    return response
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		username = None
+		if self.request.user.is_authenticated():
+			username = self.request.user.username
+		context['username'] = username
+		return context
 
 
 

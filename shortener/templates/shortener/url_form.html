@@ -3,6 +3,8 @@
 	{{ hidden_field }}
 {% endfor %}
 
+{% csrf_token %}
+
 <div class="form-group">
     <label class="lead">{{form.url.label}}</label>
     {% render_field form.url class='form-control' placeholder='Paste a link to shorten it' autofocus=""%}

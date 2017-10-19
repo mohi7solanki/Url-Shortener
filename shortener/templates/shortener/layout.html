@@ -5,41 +5,60 @@
 	<title>SlimTrim | Customize your links</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{% static 'shortener/css/style.css' %}">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet">
 	{% block style %}
 	{% endblock %}
 </head>
 <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+	  <nav class="navbar navbar-expand-lg navbar-dark fixed-top mb-2" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="/#page-top">Shorten Url</a>
+        <a class="navbar-brand" href="/#page-top">SlIMTRIM</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            
-            <li class="nav-item">
-              <a class="nav-link " href="/register">Sign up </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="/login">Sign in</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/ubank/">Analytics</a>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#about">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#contact">Contact Us</a>
-            </li>
-            
+          	{% if username %}
+          		 <li class="nav-item">
+	              <a class="nav-link " href="/profile">Profile</a>
+	            </li>
+
+	            <li class="nav-item">
+	              <a class="nav-link js-scroll-trigger" href="/#about">About Us</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link js-scroll-trigger" href="/#contact">Contact Us</a>
+	            </li>
+
+	             <li class="nav-item">
+	              <a class="nav-link " href="/logout">Logout</a>
+	            </li>
+            {% else %}
+	            <li class="nav-item">
+	              <a class="nav-link " href="/register">Sign up </a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link " href="/login">Sign in</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link js-scroll-trigger" href="/ubank/">Analytics</a>
+	            </li>
+
+	            <li class="nav-item">
+	              <a class="nav-link js-scroll-trigger" href="/#about">About Us</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link js-scroll-trigger" href="/#contact">Contact Us</a>
+	            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
     </nav>
+	
 	<div class="container">
 		{% block content %}
 		{% endblock %}
