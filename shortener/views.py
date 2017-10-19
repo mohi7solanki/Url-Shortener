@@ -54,10 +54,7 @@ class HomeView(View):
 	
 	def get(self, request):
 		form = SubmitUrlForm()
-		username = None
-		if self.request.user.is_authenticated():
-			username = self.request.user.username
-		context = {'form': form, 'username': username}
+		context = {'form': form}
 		return render(request, self.template_name, context)
 
 	def post(self, request):

@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
 
-          	{% if username %}
+          	{% if request.user.is_authenticated %}
           		 <li class="nav-item">
 	              <a class="nav-link " href="/profile">Profile</a>
 	            </li>
@@ -35,7 +35,7 @@
 	            </li>
 
 	             <li class="nav-item">
-	              <a class="nav-link " href="/logout">Logout</a>
+	              <a class="nav-link " href="/logout">Sign Out</a>
 	            </li>
             {% else %}
 	            <li class="nav-item">
@@ -61,7 +61,9 @@
     </nav>
 	
 	<div class="container">
-		{% include 'shortener/messages.html' %}
+		{% block messages %}
+			{% include 'shortener/messages.html' %}
+		{% endblock %}
 		{% block content %}
 		{% endblock %}
 	</div>

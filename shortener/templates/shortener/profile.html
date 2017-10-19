@@ -1,3 +1,7 @@
-{% for url in urls %}
-	{{ url }}
-{% endfor %}
+{% extends 'shortener/layout.html' %}
+
+{% block content %}
+	{% for url in urls %}
+		<h2 class="h2">{{ url }}</h2>
+	{% endfor %}
+{% endblock %}

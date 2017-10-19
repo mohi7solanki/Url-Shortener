@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^register$', UserRegistrationView.as_view(), name='register'),
     url(r'^login$', UserLoginView.as_view(), name='register'),
     url(r'^logout$', logoutView, name='logout'),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('shortener.urls')),
 ]
