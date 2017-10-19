@@ -17,6 +17,7 @@ class SubmitUrlForm(forms.ModelForm):
 			'url',
 			'short_url',
 		]
+		exclude = ["end_user"]
 
 	
 	def clean_url(self):

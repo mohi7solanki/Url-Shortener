@@ -1,6 +1,6 @@
 from django.db import models
 from.utils import create_short_url
-
+from django.conf import settings
 
 
 class ShortenerManager(models.Manager):
@@ -16,6 +16,7 @@ class Shortener(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	count = models.IntegerField(default=0)
+	end_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
 	active = models.BooleanField(default=True)
 	objects = ShortenerManager()
 

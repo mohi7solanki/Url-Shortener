@@ -16,6 +16,7 @@ class UserLoginView(FormView):
 		return response
 
 	def form_valid(self, form):
+		self.set_success_url()
 		response = super().form_valid(form)
 		username = form.cleaned_data.get('username')
 		password = form.cleaned_data.get('password')
@@ -24,9 +25,15 @@ class UserLoginView(FormView):
 		return response
 
 	def get_context_data(self, **kwargs):
-	    context = super().get_context_data(**kwargs)
-	    context['heading'] = 'Login'
-	    return context
+		context = super().get_context_data(**kwargs)
+		context['heading'] = 'Login'
+		return context
+
+	def set_success_url(self):
+		next_url = self.request.GET.get('next')
+		if next_url:
+			self.success_url = next_url
+
 
 
 class UserRegistrationView(FormView):

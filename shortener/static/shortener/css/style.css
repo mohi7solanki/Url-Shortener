@@ -18,10 +18,16 @@ body {
   align-items:center;
 }
 
-.navbar {
+.navbar-nav {
   font-family: 'Raleway', sans-serif;
   font-size: 120% !important;
 }
+
+.navbar-brand{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 200% !important;
+}
+
 
 
 @media (max-width: 991px) {
@@ -29,4 +35,8 @@ body {
     {
         background-color: grey!important;
     }
+
+    .navbar-brand{
+    font-size: 150% !important;
+  }
 }
