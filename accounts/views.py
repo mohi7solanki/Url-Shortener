@@ -22,6 +22,11 @@ class UserLoginView(FormView):
 		login(self.request, user)
 		return response
 
+	def get_context_data(self, **kwargs):
+	    context = super().get_context_data(**kwargs)
+	    context['heading'] = 'Login'
+	    return context
+
 
 class UserRegistrationView(FormView):
 	template_name = 'accounts/form.html'
@@ -41,3 +46,8 @@ class UserRegistrationView(FormView):
 		user = authenticate(username=user.username, password=password)
 		login(self.request, user)
 		return response
+
+	def get_context_data(self, **kwargs):
+	    context = super().get_context_data(**kwargs)
+	    context['heading'] = 'Register'
+	    return context

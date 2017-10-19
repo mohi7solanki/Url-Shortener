@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.views.generic.edit import FormView
 from django.http import JsonResponse
+from django.db.models import F
 
 
 # def home(request):
@@ -48,7 +49,7 @@ class HomeView(FormView):
 
 def url_redirect_view(request, short_url=None):
 	url = get_object_or_404(Shortener, short_url=short_url)
-	url.count += 1
+	url.count = F('count') + 1
 	url.save()
 	return HttpResponseRedirect(url)
 
