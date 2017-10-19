@@ -5,8 +5,9 @@ from django.views.generic import CreateView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic.base import RedirectView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class UserLoginView(FormView):
@@ -38,11 +39,14 @@ class UserLoginView(FormView):
 			self.success_url = next_url
 
 
-def logoutView(request):
-	logout(request)
-	template_name = 'shortener/home.html'
-	messages.success(request, 'Logged Out successfully!')
-	return HttpResponseRedirect('/')
+class LogoutView(LoginRequiredMixin, RedirectView):
+	url = '/'
+	login_url = '/login'
+
+	def get(self, request, *args, **kwargs):
+		logout(request)
+		messages.success(request, 'Logged Out successfully!')
+		return super().get(request, *args, **kwargs)
 
 
 class UserRegistrationView(SuccessMessageMixin, CreateView):
