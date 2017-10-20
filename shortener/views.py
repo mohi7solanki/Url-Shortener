@@ -20,7 +20,7 @@ class HomeView(View):
 	
 	def get(self, request):
 		form = SubmitUrlForm()
-		context = {'form': form}
+		context = {'form': form }
 		return render(request, self.template_name, context)
 
 	def post(self, request):
@@ -38,7 +38,6 @@ class HomeView(View):
 			}
 			return JsonResponse(data)
 		return JsonResponse(form.errors, status=400)
-
 
 
 

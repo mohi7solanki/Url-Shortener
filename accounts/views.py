@@ -31,6 +31,7 @@ class UserLoginView(FormView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['heading'] = 'Login'
+		context['forgot'] = 'forgot'
 		return context
 
 	def set_success_url(self):
