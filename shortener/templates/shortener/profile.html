@@ -1,7 +1,38 @@
 {% extends 'shortener/layout.html' %}
 
 {% block content %}
-	{% for url in urls %}
-		<h2 class="h2">{{ url }}</h2>
-	{% endfor %}
+
+{% if urls %}
+	<div class="row">
+		<div class="col-lg-10 col-md-10 mx-auto">
+			<table class="table table-hover table-responsive">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Url</th>
+			      <th scope="col">short url</th>
+			      <th scope="col">Hit Count</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	{% for url in urls %}
+					<tr>
+						<th scope="row">{{ forloop.counter }}</th>
+						<td>{{ url.get_full_url }}</td>
+						<td>{{ url.short_url }}</td>
+						<td>{{ url.count }}</td>
+						{% endfor %}
+					</tr>
+			</table>
+		</div>
+	</div>
+
+{% else %}
+	<div class="row">
+		<div class="col-lg-8 col-md-8 mx-auto text-center">
+			<p class="h3">No shortened URL's yet!</p>
+			<a class="lead text-center" href="/">Add Some?</a>
+		</div>
+	</div>
+{% endif %}
 {% endblock %}

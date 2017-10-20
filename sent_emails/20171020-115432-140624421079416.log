@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on www.slim.co:8000
+From: webmaster@localhost
+To: test@gmail.com
+Date: Fri, 20 Oct 2017 06:24:32 -0000
+Message-ID: <20171020062432.11060.45378@linux>
+
+
+You're receiving this email because you requested a password reset for your user account at www.slim.co:8000.
+
+Please go to the following page and choose a new password:
+
+http://www.slim.co:8000/account/reset/MjM/4qg-2dae42881a8106340df8/
+
+Your username, in case you've forgotten: test
+
+Thanks for using our site!
+
+The www.slim.co:8000 team
+
+
+
+-------------------------------------------------------------------------------

@@ -47,7 +47,7 @@ class ProfileView(LoginRequiredMixin, ListView):
 	template_name = 'shortener/profile.html'
 
 	def get_queryset(self):
-		return Shortener.objects.filter(end_user=self.request.user)
+		return Shortener.objects.filter(end_user=self.request.user).order_by('-created_at')
 
 
 
