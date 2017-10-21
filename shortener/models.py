@@ -31,4 +31,4 @@ class Shortener(models.Model):
 
 
 	def get_full_url(self):
-		return 'http://slimtrim.co/{}'.format(self.short_url)
+		return 'https://slimtrim.co/{}'.format(self.short_url)
