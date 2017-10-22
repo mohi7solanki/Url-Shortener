@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^login$', UserLoginView.as_view(), name='login'),
     url(r'^logout$', LogoutView.as_view(), name='logout'),
     url(r'^account/', include('django.contrib.auth.urls')),
+    url('', include('pwa.urls')),
     url(r'^', include('shortener.urls')),
 ]
