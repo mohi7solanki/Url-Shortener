@@ -1,18 +1,17 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from .models import Shortener
 from .forms import SubmitUrlForm
 from django.urls import reverse
 from django.contrib import messages
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, DeleteView
 from django.http import JsonResponse
 from django.db.models import F
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic.base import RedirectView
-
-
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class HomeView(View):
@@ -59,6 +58,25 @@ class UrlRedirectView(RedirectView):
 		url.save()
 		return url
 
+
+class UrlDeleteView(LoginRequiredMixin, DeleteView):
+	login_url = '/login'
+	model = Shortener
+	template_name = 'shortener/confirm_delete.html'
+	success_url = '/profile'
+
+	def get_object(self, queryset=None):
+		short_url = self.kwargs.get('short_url')
+		return Shortener.objects.get(short_url=short_url)
+
+	def get(self, request, *args, **kwargs):
+		if not request.user == self.get_object().end_user:
+			raise Http404
+		return super().get(request, *args, **kwargs)
+
+	def post(self, request, *args, **kwargs):
+		messages.success(request, 'Url Deleted successfully!')
+		return super().post(request, *args, **kwargs)
 
 
 # class HomeView(FormView):

@@ -1,0 +1,14 @@
+{% extends 'shortener/layout.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-6 col-md-6 mx-auto">
+		<form action="" method="post">{% csrf_token %}
+	    <p>Are you sure you want to delete "{{ object.get_full_url }}" ?</p>
+	    <div class="form-group mt-3">
+		    <input type="submit" class="btn btn-sm btn-danger mr-4" value="Confirm"/>
+		    <a href="/profile">Cancel</a>
+	    </div>
+	</form>
+
+{% endblock %}
