@@ -4,6 +4,8 @@ from django.core.validators import URLValidator
 
 
 class SubmitUrlForm(forms.ModelForm):
+	internal_name = ('profile', 'contact', 'disclaimer', 'sitemap.xml', 'robots.txt')
+
 	url = forms.CharField(max_length=200,
 		label='Link to shorten',
 		required=False,
@@ -36,8 +38,11 @@ class SubmitUrlForm(forms.ModelForm):
 	
 	def clean_short_url(self):
 		short_url = self.cleaned_data['short_url']
-		exists = Shortener.objects.filter(short_url=short_url).exists()
-		if exists:
-			raise forms.ValidationError("Please Choose another short link. This '{}' already exists.".format(short_url))
+		if short_url:
+			if short_url in SubmitUrlForm.internal_name:
+				raise forms.ValidationError("Bummer! We love that word, Please choose another one.")
+			exists = Shortener.objects.filter(short_url=short_url).exists()
+			if exists:
+				raise forms.ValidationError("Please Choose another short link. This '{}' already exists.".format(short_url))
 		return short_url
 
