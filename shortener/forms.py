@@ -1,10 +1,13 @@
+import re
+import string
 from django import forms
 from .models import Shortener
 from django.core.validators import URLValidator
 
 
+
 class SubmitUrlForm(forms.ModelForm):
-	internal_name = ('profile', 'contact', 'disclaimer', 'sitemap.xml', 'robots.txt')
+	internal_name = ('profile', 'contact', 'disclaimer', 'sitemap.xml', 'robots.txt', 'favicon.ico')
 
 	url = forms.CharField(max_length=200,
 		label='Link to shorten',
@@ -38,11 +41,24 @@ class SubmitUrlForm(forms.ModelForm):
 	
 	def clean_short_url(self):
 		short_url = self.cleaned_data['short_url']
-		if short_url:
+		if short_url:	
+			if self.contains_whitespace(short_url):
+				raise forms.ValidationError('Whitespaces are kinda awkward, Use "_" instead?')
+			if self.contains_special_characters(short_url): 
+				raise forms.ValidationError('Bummer! Special characters aren\'t special enough!')
 			if short_url in SubmitUrlForm.internal_name:
 				raise forms.ValidationError("Bummer! We love that word, Please choose another one.")
 			exists = Shortener.objects.filter(short_url=short_url).exists()
 			if exists:
 				raise forms.ValidationError("Please Choose another short link. This '{}' already exists.".format(short_url))
 		return short_url
+
+	@staticmethod
+	def contains_whitespace(s):
+		return True in [c in s for c in string.whitespace]
+
+	@staticmethod
+	def contains_special_characters(s):
+		regex = re.compile(r'^(\w|-){3,15}$')
+		return not regex.match(s)
 
