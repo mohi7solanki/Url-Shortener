@@ -6,8 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserLoginForm(forms.Form):
-	username = forms.CharField(required=True)
-	password = forms.CharField(widget=forms.PasswordInput, required=True)
+	username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter username'}),required=True)
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Enter password'}), required=True)
 
 	def clean_username(self):
 		username = self.cleaned_data.get('username')
@@ -39,6 +39,10 @@ class UserCreateForm(UserCreationForm):
 		self.fields['username'].help_text = None
 		self.fields['password1'].help_text = None
 		self.fields['password2'].help_text = None
+		self.fields['email'].widget.attrs['placeholder'] = 'Enter your e-mail'
+		self.fields['username'].widget.attrs['placeholder'] = 'Enter username'
+		self.fields['password1'].widget.attrs['placeholder'] = 'Enter a strong password'
+		self.fields['password2'].widget.attrs['placeholder'] = 'Confirm password'
 
 	def clean_email(self):
 		email = self.cleaned_data.get('email')

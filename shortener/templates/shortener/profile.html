@@ -19,7 +19,7 @@
 {% block content %}
 
 {% if urls %}
-	<div class="row">
+	<div class="row" id="startchange">
 		<div class="col-lg-10 col-md-10 mx-auto">
 			<p class="h3">Click On the URL to delete it!</p>
 			<table class="table table-hover table-responsive">
@@ -52,4 +52,22 @@
 		</div>
 	</div>
 {% endif %}
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(window).scroll(function() { 
+			if ($(document).scrollTop() > 50) { 
+			  $(".navbar").css("background-color", "grey"); 
+			} else {
+			  $(".navbar").css("background-color", "transparent");
+			}
+		});
+	});
+	var ht = $('#startchange').height()
+	if(ht > 590){
+		$('body').css('padding-top','200px');
+	}
+	</script>
 {% endblock %}
