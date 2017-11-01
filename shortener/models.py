@@ -11,7 +11,7 @@ class ShortenerManager(models.Manager):
 
 
 class Shortener(models.Model):
-	url = models.URLField(max_length=250)
+	url = models.URLField(max_length=2048)
 	short_url = models.CharField(max_length=15, unique=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
