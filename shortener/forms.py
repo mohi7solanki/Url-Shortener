@@ -7,7 +7,7 @@ from django.core.validators import URLValidator
 
 
 class SubmitUrlForm(forms.ModelForm):
-	internal_name = ('profile', 'contact', 'disclaimer', 'sitemap.xml', 'robots.txt', 'favicon.ico')
+	internal_name = ('profile', 'contact', 'about', 'disclaimer', 'sitemap.xml', 'robots.txt', 'favicon.ico')
 
 	url = forms.CharField(max_length=200,
 		label='Link to shorten',
