@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.views.generic.edit import FormView, DeleteView
 from django.http import JsonResponse
 from django.db.models import F
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic.base import RedirectView
@@ -49,6 +49,9 @@ class ProfileView(LoginRequiredMixin, ListView):
 		return Shortener.objects.filter(end_user=self.request.user).order_by('-created_at')
 
 
+class AboutView(TemplateView):
+    template_name = 'shortener/about.html'
+
 
 class UrlRedirectView(RedirectView):
 	
@@ -77,6 +80,8 @@ class UrlDeleteView(LoginRequiredMixin, DeleteView):
 	def post(self, request, *args, **kwargs):
 		messages.success(request, 'Url Deleted successfully!')
 		return super().post(request, *args, **kwargs)
+
+
 
 
 # class HomeView(FormView):
