@@ -28,7 +28,7 @@ class SubmitUrlForm(forms.ModelForm):
 	def clean_url(self):
 		url = self.cleaned_data['url']
 		if len(url) == 0 or url is None:
-			raise forms.ValidationError("One day I'll have superpower to shorten that blank URL ;)")
+			raise forms.ValidationError("Come on! Find some URL.")
 		if not 'http://' in url and not 'https://' in url:
 		    url = 'http://' + url
 		url_validate = URLValidator()

@@ -53,6 +53,7 @@ $(document).ready(function(){
 
     function handleFormError(jqXHR, textStatus, errorThrown){
     	var urlError = jqXHR.responseJSON.url
+        var input_value = $('#id_short_url').val()
     	if (urlError) {
     		urlError = urlError[0]
     		$("#id_url").addClass("is-invalid");
@@ -69,7 +70,7 @@ $(document).ready(function(){
     		$("#id_short_url").addClass("is-invalid");
     		$(".invalid_short_url").html(shortUrlError);
     	}
-    	else{
+    	else if(input_value){
     		$("#id_short_url").removeClass("is-invalid");
     		$(".invalid_short_url").empty();
     		$("#id_short_url").addClass("is-valid");
