@@ -14,7 +14,7 @@ class SubmitUrlForm(forms.ModelForm):
 		required=False,
 		)
 
-	short_url = forms.CharField(min_length=3, max_length=15, required=False)
+	short_url = forms.CharField(min_length=3, max_length=20, required=False)
 	
 	class Meta:
 		model = Shortener
@@ -59,6 +59,6 @@ class SubmitUrlForm(forms.ModelForm):
 
 	@staticmethod
 	def contains_special_characters(s):
-		regex = re.compile(r'^(\w|-){3,15}$')
+		regex = re.compile(r'^(\w|-){3,20}$')
 		return not regex.match(s)
 
