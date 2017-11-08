@@ -27,7 +27,6 @@ class UserLoginForm(forms.Form):
 
 
 class UserCreateForm(UserCreationForm):
-	
 	email = forms.EmailField(required=True)
 	
 	class Meta:
@@ -49,33 +48,3 @@ class UserCreateForm(UserCreationForm):
 		if User.objects.filter(email=email).exists():
 			raise forms.ValidationError('That email address is already registered!')
 		return email
-
-# class UserForm(forms.ModelForm):
-# 	email = forms.EmailField(required=True, validators=[EmailValidator])
-# 	username = forms.CharField(help_text=None)
-# 	password = forms.CharField(widget=forms.PasswordInput)
-# 	confirm_password =forms.CharField(widget=forms.PasswordInput)
-
-# 	class Meta:
-# 		model = User
-# 		fields = [
-# 		'username',
-# 		'email',
-# 		'password',
-# 		]
-
-
-# 	def clean_confirm_password(self):
-# 		password = self.cleaned_data.get('password')
-# 		password2 = self.cleaned_data.get('confirm_password')
-# 		if len(password2) > 6:
-# 			if password != password2:
-# 				raise forms.ValidationError("Your Password doesn't match!")
-# 		return password2
-
-# 	def clean_password(self):
-# 		password = self.cleaned_data.get('password')
-# 		password2 = self.cleaned_data.get('confirm_password')
-# 		if len(password) < 6:
-# 			raise forms.ValidationError("Password should contain atleast 6 character!")
-# 		return password
