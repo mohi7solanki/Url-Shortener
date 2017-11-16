@@ -85,7 +85,7 @@ class UrlDeleteView(LoginRequiredMixin, DeleteView):
 
 def fast_track_service(request):
 	fast_track_url = request.get_full_path()[1:].replace('/?','?')
-	if 'favicon.ico' in fast_track_url:
+	if 'favicon.ico' in fast_track_url or 'robots.txt' in fast_track_url:
 		return HttpResponse()
 	if fast_track_url[-1] == '/':
 		fast_track_url = fast_track_url[:-1]
