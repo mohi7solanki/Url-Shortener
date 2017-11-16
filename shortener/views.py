@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic.base import RedirectView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.validators import URLValidator
 
 
 class HomeView(View):
@@ -80,3 +81,22 @@ class UrlDeleteView(LoginRequiredMixin, DeleteView):
 	def post(self, request, *args, **kwargs):
 		messages.success(request, 'Url Deleted successfully!')
 		return super().post(request, *args, **kwargs)
+
+
+def fast_track_service(request):
+	fast_track_url = request.get_full_path()[1:].replace('/?','?')
+	if 'favicon.ico' in fast_track_url:
+		return HttpResponse()
+	if fast_track_url[-1] == '/':
+		fast_track_url = fast_track_url[:-1]
+	url_validate = URLValidator()
+	try:
+		url_validate(fast_track_url)
+	except:
+		fast_track_url = 'http://' + fast_track_url
+		try:
+			url_validate(fast_track_url)
+		except:
+			raise Http404
+	f_url = Shortener.objects.create(url=fast_track_url)
+	return render(request, 'shortener/fast_track.html', {'f_url': f_url})

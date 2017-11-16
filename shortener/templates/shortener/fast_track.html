@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slimtrim | Fast Track Service</title>
+	<style type="text/css">
+		body {
+			background: #34e89e;  
+			background: -webkit-linear-gradient(to right, #0f3443, #34e89e);  
+			background: linear-gradient(to right, #0f3443, #34e89e);
+			color: white;
+			font-size: 300%;
+		}
+
+		.container{
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  height: 100vh;
+		}
+	</style>
+</head>
+<body class="btn" data-clipboard-text={{ f_url.get_full_url }} onclick="goBack()">
+	<div class="container">
+	  <div class="flex-item">
+	   <h4>Click Anywhere to copy the link and get back to your Page</h4>
+	  </div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+	<script type="text/javascript">
+		new Clipboard('.btn');
+		function goBack() {
+		    window.history.back();
+		}
+	</script>
+</body>
+</html>
