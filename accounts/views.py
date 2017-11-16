@@ -62,28 +62,4 @@ class UserRegistrationView(SuccessMessageMixin, CreateView):
 		return context
 
 
-# class UserRegistrationView(FormView):
-# 	template_name = 'accounts/form.html'
-# 	form_class = UserForm
-# 	success_url = '/'
-
-# 	def form_invalid(self, form):
-# 		response = super().form_invalid(form)
-# 		return response
-
-# 	def form_valid(self, form):
-# 		response = super().form_valid(form)
-# 		user = form.save(commit=False)
-# 		password = form.cleaned_data.get('password')
-# 		user.set_password(password)
-# 		user.save()
-# 		user = authenticate(username=user.username, password=password)
-# 		login(self.request, user)
-# 		return response
-
-# 	def get_context_data(self, **kwargs):
-# 	    context = super().get_context_data(**kwargs)
-# 	    context['heading'] = 'Register'
-# 	    return context
-
 
