@@ -76,7 +76,7 @@ $(document).ready(function(){
     		$("#id_short_url").addClass("is-valid");
     	}
          else{
-            $("#id_short_url").removeClass("is-invalid");
+            $("#id_short_url").removeClass("is-valid is-invalid");
             $(".invalid_short_url").empty();
         }
     }
