@@ -28,13 +28,13 @@ class UserLoginForm(forms.Form):
 
 class UserCreateForm(UserCreationForm):
 	email = forms.EmailField(required=True)
-	
+
 	class Meta:
 		fields =  ('username', 'email', 'password1', 'password2')
 		model = User
 
 	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		super(UserCreateForm, self).__init__(*args, **kwargs)
 		self.fields['username'].help_text = None
 		self.fields['password1'].help_text = None
 		self.fields['password2'].help_text = None
