@@ -17,7 +17,7 @@ from django.core.validators import URLValidator
 
 class HomeView(View):
 	template_name = 'shortener/home.html'
-	
+
 	def get(self, request):
 		form = SubmitUrlForm()
 		context = {'form': form }
@@ -55,7 +55,7 @@ class AboutView(TemplateView):
 
 
 class UrlRedirectView(RedirectView):
-	
+
 	def get_redirect_url(self, short_url):
 		url = get_object_or_404(Shortener, short_url=short_url)
 		url.count = F('count') + 1
@@ -76,11 +76,11 @@ class UrlDeleteView(LoginRequiredMixin, DeleteView):
 	def get(self, request, *args, **kwargs):
 		if not request.user == self.get_object().end_user:
 			raise Http404
-		return super().get(request, *args, **kwargs)
+		return super(UrlDeleteView, self).get(request, *args, **kwargs)
 
 	def post(self, request, *args, **kwargs):
 		messages.success(request, 'Url Deleted successfully!')
-		return super().post(request, *args, **kwargs)
+		return super(UrlDeleteView, self).post(request, *args, **kwargs)
 
 
 def fast_track_service(request):
