@@ -16,12 +16,12 @@ class UserLoginView(FormView):
 	success_url = '/'
 
 	def form_invalid(self, form):
-		response = super().form_invalid(form)
+		response = super(UserLoginView, self).form_invalid(form)
 		return response
 
 	def form_valid(self, form):
 		self.set_success_url()
-		response = super().form_valid(form)
+		response = super(UserLoginView, self).form_valid(form)
 		username = form.cleaned_data.get('username')
 		password = form.cleaned_data.get('password')
 		user = authenticate(username=username, password=password)
@@ -29,7 +29,7 @@ class UserLoginView(FormView):
 		return response
 
 	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
+		context = super(UserLoginView, self).get_context_data(**kwargs)
 		context['heading'] = 'Login'
 		context['forgot'] = 'forgot'
 		return context
@@ -47,7 +47,7 @@ class LogoutView(LoginRequiredMixin, RedirectView):
 	def get(self, request, *args, **kwargs):
 		logout(request)
 		messages.success(request, 'Logged Out successfully!')
-		return super().get(request, *args, **kwargs)
+		return super(LogoutView, self).get(request, *args, **kwargs)
 
 
 class UserRegistrationView(SuccessMessageMixin, CreateView):
@@ -57,9 +57,6 @@ class UserRegistrationView(SuccessMessageMixin, CreateView):
 	success_message = "Registered Succesfully! Now Please Login"
 
 	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
+		context = super(UserRegistrationView, self).get_context_data(**kwargs)
 		context['heading'] = 'Register'
 		return context
-
-
-
