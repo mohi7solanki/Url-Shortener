@@ -5,7 +5,7 @@ from django.conf import settings
 
 class ShortenerManager(models.Manager):
 	def all(self, *args, **kwargs):
-		query_set = super().all(*args, **kwargs).filter(active=True)
+		query_set = super(ShortenerManager, self).all(*args, **kwargs).filter(active=True)
 		return query_set
 
 
@@ -23,7 +23,7 @@ class Shortener(models.Model):
 	def save(self, *args, **kwargs):
 		if self.short_url is None or self.short_url == "":
 			self.short_url = create_short_url(self)
-		super().save(*args, **kwargs)
+		super(Shortener, self).save(*args, **kwargs)
 
 
 	def __str__(self):
@@ -31,4 +31,4 @@ class Shortener(models.Model):
 
 
 	def get_full_url(self):
-		return 'https://slimtrim.co/{}'.format(self.short_url)
+		return 'http://localhost:8000/{}'.format(self.short_url)
